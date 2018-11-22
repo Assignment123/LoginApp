@@ -3,7 +3,8 @@ const app = express();
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 const config = require("./Modules/Config/config");
-const route = require("./Routes/index");
+const routerHelp = require("./Routes/index");
+
 
 mongoose.connect(config.database);
 
@@ -18,7 +19,8 @@ app.use(bodyparser.urlencoded({
     extended: true
 }));
 
-app.use('/api/', route);
+//app.use('/api/', route);
+routerHelp.initialize(app);
 
 app.listen(8000, () => {
     console.log('Server is up and running');
