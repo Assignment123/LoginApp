@@ -12,7 +12,6 @@ exports.savemodel = (req, res,err) => {
         })
         .then((d) => {
             if (!d) {
-                //post
                 bcrypt.hash(req.body.passWord, SALT_VAl, (err, hash) => {
                     model.create({
                         firstName: req.body.firstName,
