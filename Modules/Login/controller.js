@@ -18,11 +18,12 @@ exports.logIn = (req, res) => {
                         bcrypt.compare(req.body.passWord, data.passWord, (err, result) => {
                             if (result == true) {
                                 const JwtToken = jWT.sign({
-                                    firstname: user.firstname,
-                                    lastname: user.lastname,
-                                    email: user.email,
-                                    username: user.username,
-                                    _id: user._id
+                                    firstName: data.firstName,
+                                    lastName: data.lastName,
+                                    email: data.email,
+                                    userName: data.userName,
+                                    _id: data._id
+
                                 });
                                 return res.status(200).json({
                                     success: 'Welcome to JWT',
