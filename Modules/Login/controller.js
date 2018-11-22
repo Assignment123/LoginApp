@@ -17,23 +17,34 @@ exports.logIn = (req, res) => {
                     } else {
                         bcrypt.compare(req.body.passWord, data.passWord, (err, result) => {
                             if (result == true) {
-                                const JwtToken = jWT.sign({
-                                    firstName: data.firstName,
-                                    lastName: data.lastName,
-                                    email: data.email,
-                                    userName: data.userName,
-                                    _id: data._id
+                                return res.status(400).send('Welcome');
 
-                                });
-                                return res.status(200).json({
-                                    success: 'Welcome to JWT',
-                                    token: JwtToken
-                                });
                             } else {
                                 return res.status(400).send('Password Incorrect');
                             }
 
+
                         });
+
+                        const userData ={
+                            firstName: data.firstName,
+                            lastName: data.lastName,
+                            email: data.email,
+                            userName: data.userName,
+                            _id: data._id
+            
+                        };
+                        const JwtToken = jWT.sign(userData, 'secret key'
+                        );
+                        return res.status(200).json({
+                            success: 'Welcome to JWT',
+                            token: JwtToken,
+                            userData:userData
+                    
+                        });
+
                     }
                 })
             };
+
+           
