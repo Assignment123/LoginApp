@@ -3,5 +3,5 @@ const router = express.Router();
 
 var responses = require("./controller");
 
-router.post('/post/login/', responses.logIn);
+router.post('/login', responses.logIn);
 module.exports = router;

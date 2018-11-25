@@ -1,6 +1,8 @@
+const config = require("./Modules/Config/config");
+
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://sudrishya:sudrishya123@ds125272.mlab.com:25272/login');
+mongoose.connect(config.database);
 
 const Schema1 = new mongoose.Schema({
     firstName: {type: String, required: true, max: 30},

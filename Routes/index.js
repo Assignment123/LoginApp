@@ -1,7 +1,10 @@
 var express = require("express");
 //const router = express.Router();
+var signUp = require("../Modules/Signup/signcontroller");
+
 var responses = require("../Modules/Login/controller");
-var signUp = require("./../Modules/Signup/signcontroller");
+
+var errorRoute = require("./../Modules/errorHandling/errorRoute")
 
 // router.post('/create/user/', signUp.savemodel);
 
@@ -10,7 +13,7 @@ var signUp = require("./../Modules/Signup/signcontroller");
 // module.exports = router;
 
 exports.initialize = (app) => {
-    app.use('/create/user', signUp);
-    app.use('/post/login', responses);
-    //app.use('/error', errorLog);
+    app.use('/user/', signUp);
+    app.use('/login/', responses);
+    app.use('/error/', errorRoute);
 }

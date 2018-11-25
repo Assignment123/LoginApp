@@ -5,10 +5,10 @@ const SALT_VAl = 10;
 
 mongoose.Promise = Promise;
 
-exports.savemodel = (req, res,err) => {
+exports.savemodel = (req, res, err) => {
 
     model.findOne({
-        userName: req.body.userName
+            userName: req.body.userName
         })
         .then((d) => {
             if (!d) {
@@ -22,14 +22,14 @@ exports.savemodel = (req, res,err) => {
                         created_at: req.body.created_at,
                         is_deleted: req.body.is_deleted
                     }).then((data) => {
-                        res.status(200).json({
+                        res.status(200).json({code:"200", status:"OK",
                             message: "Posted Data"
                         });
                     }).catch((err) => {
                         return res.status(500).json({
-                            code:500,
+                            code: 500,
                             message: "Server Error",
-                            status:'Error',
+                            status: 'Error',
                             errMsg: err.toString()
                         })
                     });
@@ -37,9 +37,9 @@ exports.savemodel = (req, res,err) => {
                 });
             } else {
                 return res.status(409).json({
-                    code:"409",
+                    code: "409",
                     message: "Username is already taken",
-                    status:'Error',
+                    status: 'Error',
                     errMsg: err.toString()
                 })
             }
